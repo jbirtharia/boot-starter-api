@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 @Slf4j
@@ -18,20 +16,27 @@ public class CustomerDAOImpl implements CustomerDAO{
 	
 
 	public List<Customer> getAll() {
-
-		return
-				(List<Customer>)
-						factory.getCurrentSession().
-								createCriteria(Customer.class).list()
-								.stream().sorted(Comparator.comparingInt(Customer::getId)).
-								collect(Collectors.toList());
+		return factory.getCurrentSession().
+				createCriteria(Customer.class).list();
 	}
 
-	public Customer save(Customer customer) {
 
+	public Customer save(Customer customer) {
 		if(customer.getFirstName() == null)
 			throw new RuntimeException("Exception occurred during save..");
 		factory.getCurrentSession().save(customer);
 		return customer;
+	}
+
+
+	public Customer findOne(Integer id) {
+		return
+				factory.getCurrentSession()
+						.get(Customer.class, id);
+	}
+
+	@Override
+	public void delete(Customer customer) {
+		factory.getCurrentSession().delete(customer);
 	}
 }

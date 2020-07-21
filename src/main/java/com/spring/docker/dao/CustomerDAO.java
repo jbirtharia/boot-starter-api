@@ -9,4 +9,8 @@ public interface CustomerDAO {
 	public List<Customer> getAll();
 	
 	public Customer save(Customer customer);
+
+	public Customer findOne(Integer id);
+
+    void delete(Customer customer);
 }

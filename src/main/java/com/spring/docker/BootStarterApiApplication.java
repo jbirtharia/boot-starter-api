@@ -18,13 +18,13 @@ public class BootStarterApiApplication {
 	}
 
 
-	@Bean
+	/*@Bean
 	public List<Customer> populateInitialData(CustomerService service){
 		service.saveCustomer(new Customer(1,"Ram","Tiwari","ram@gmail.com"));
 		service.saveCustomer(new Customer(2,"Pankaj","Jain","pankaj@gmail.com"));
 		service.saveCustomer(new Customer(3,"Nand","Kumar","nand@gmail.com"));
 		return service.getCustomers();
-	}
+	}*/
 
 
 }
